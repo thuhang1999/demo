@@ -9,7 +9,8 @@ const products = [
 
 ];
 
-const Products = (products) => {
+const Products = ({products}) => {
+    // console.log("products ==>", products);
     return (
     <main>
         <Grid container justify='center' spacing={4}>

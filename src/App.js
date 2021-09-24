@@ -8,6 +8,7 @@ const App = () => {
     const [products, setProducts] = useState([]);
     const fetchProducts = async() => {
         const {data} = await commerce.products.list();
+        // console.log("checkMe --> data", data);
         setProducts(data);
 
     }
@@ -15,11 +16,11 @@ const App = () => {
         fetchProducts();
     }, []
     );
-    console.log(products);
+    // console.log("checkMe --> fetchProducts", products);
     return (
     <div>
         <Navbar />
-        <Products products ={products}/>
+        <Products products={products}/>
     </div>
     )
 
