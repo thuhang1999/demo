@@ -3,6 +3,7 @@ import { Container, Typography, Button, Grid } from "@material-ui/core";
 // import { CallMissedSharp } from "@material-ui/icons";
 // import { mergeClasses } from "@material-ui/styles";
 import useStyles from './styles';
+import CartItem from './CartItem/CartItem';
 const Cart = ({cart})=>{
     const isEmpty=!cart.line_items.length;
     const classes=useStyles();

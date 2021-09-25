@@ -9,6 +9,7 @@ import useStyles from './styles';
 const Navbar = ({totalItems}) => {
     const classes=useStyles();
     const location= uselocation();
+    // if (location.pathname ==='/')
     return(
         <>
             <AppBar position="fixed" className={classes.appBar} color="inherit">
@@ -19,6 +20,7 @@ const Navbar = ({totalItems}) => {
 
                     </Typography>
                     <div className={classes.grow}/>
+                    {location.pathName==='/' && (
                     <div className={classes.button}>
                         <Link to='/cart'>go to cart</Link>
                         <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
@@ -26,7 +28,7 @@ const Navbar = ({totalItems}) => {
                                 <ShoppingCart />
                             </Badge>
                         </IconButton>
-                    </div>
+                    </div>)}
                 </Toolbar>
 
             </AppBar>
@@ -35,5 +37,5 @@ const Navbar = ({totalItems}) => {
 
 }
 
-export default Navbar
+export default Navbar;
 

@@ -9,7 +9,6 @@ const Product = ({product, onAddToCart}) => {
     // console.log(product);
     // return <div>test</div>
         return (
-            
         <Card className={classes.root}> 
             <CardMedia className={classes.media} image='{product.media.sourch}' title={product.name}/>
             <CardContent>
