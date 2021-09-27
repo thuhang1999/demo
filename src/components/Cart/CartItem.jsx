@@ -6,13 +6,13 @@ const CartItem=({item})=>{
     const classes=useStyles();
     return(
         <Cart>
-            <CartMedia>image={item.media.source} alt={item.name} className={classes.media}</CartMedia>
+            <CartMedia image={item.media.source} alt={item.name} className={classes.media}/>
             <CartContent className={classes.cartContent}>
                 <Typography variant="h4">{item.name}</Typography>
                 <Typography variant="h5">{item.line_total.formatted_with_symbol}</Typography>
             </CartContent>
-            <CartAction className={class.CartAction}>
-                <div className={classes.button}>
+            <CartAction className={classes.cartAction}>
+                <div className={classes.buttons}>
                     <Button type='button' size='small'>-</Button>
                     <Typography>{item.quanity}</Typography>
                     <Button type='button' size='small'>+</Button>
