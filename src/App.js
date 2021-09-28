@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { commerce } from './lib/commerce';
-
-//import Products from './components/Products/Products';
-//import Navbar from './components/Navbar/Navbar';
 import {Products, Navbar, Cart} from './components';
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+
 const App = () => {
     const [products, setProducts] = useState([]);
-    const [cart, setCart] = useStage({});
+    const [cart, setCart] = useState({});
 
     const fetchProducts = async() => {
         const {data} = await commerce.products.list();
@@ -16,12 +14,26 @@ const App = () => {
 
     }
     const fetchCart = async() =>{
-        setcart (await commerce.cart.retrieve());
+        setCart(await commerce.cart.retrieve());
     }
 
     const handleAddToCart = async (productId, quantity) =>{
-        const item =await commerce.cart.add(productId, quantity);
-        setCart (item.cart);
+        const {cart} =await commerce.cart.add(productId, quantity);
+        setCart(cart);
+    }
+
+
+    const hanleUpdateCartQty= async(productId)=>{
+        const {cart} = await commerce.cart.update(productId, { quantity });
+        setCart(cart);
+    }
+    const hanleRemoveFromCart= async(productId)=>{
+        const {cart} = await commerce.cart.remove(productId);
+        setCart(cart);
+    }
+    const hanleEmptyCart= async()=>{
+        const {cart}= await commerce.cart.empty();
+        setCart(cart);
     }
 
     useEffect(() => {
@@ -41,7 +53,12 @@ const App = () => {
                     </Route>
 
                     <Route exact path="/cart">
-                        <Cart cart={cart}/>
+                        <Cart 
+                        cart={cart}
+                        hanleUpdateCartQty = {hanleUpdateCartQty}
+                        hanleRemoveFromCart ={hanleRemoveFromCart}
+                        hanleEmptyCart = {hanleEmptyCart}
+                        />
                     </Route>
                 </Switch>
 

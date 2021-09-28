@@ -1,14 +1,14 @@
 import React from "react";
 import { AppBar, Toolbar, IconButton, Badge, MenuItem, Menu, Typography } from "@material-ui/core";
 import { ShoppingCart } from "@material-ui/icons";
-import {Link, uselocation} from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
 
 import logo from '../../assets/commerce.png';
 import useStyles from './styles';
 
 const Navbar = ({totalItems}) => {
     const classes=useStyles();
-    const location= uselocation();
+    const location= useLocation();
     // if (location.pathname ==='/')
     return(
         <>
