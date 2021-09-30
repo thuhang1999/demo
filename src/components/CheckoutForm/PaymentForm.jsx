@@ -1,9 +1,9 @@
 import React from "react";
 import { Typography, Button, Divider } from "@material-ui/core";
 import { Elements, CartElement, ElementsConsumer, CardElement } from "@stripe/react-stripe-js";
-import { loadStrip } from '@stripe/stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 
-import Review from '/Review';
+import Review from './Review';
 
 const stripePronise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
@@ -13,7 +13,7 @@ const PaymentForm=({checkoutToken, shippingData, backStep, onCaptrureCheckout, n
         if (!stripe || !elements) return;
 
         const CartElement = elements.getElement(CardElement);
-        const {error, paymenMethod } = await stripe.creatPaymentMethod({ type: 'card', card: CardElement});
+        const {error, paymentMethod } = await stripe.creatPaymentMethod({ type: 'card', card: CardElement});
         if(error) {
             console.log(error);
         } else {
@@ -28,7 +28,7 @@ const PaymentForm=({checkoutToken, shippingData, backStep, onCaptrureCheckout, n
                     postal_zip_code: shippingData.zip,
                     count: shippingData.shippingCountry,
                 },
-                fulfillment: { shipping_method: shipingData.shippingData.shippingOption},
+                fulfillment: { shipping_method: shippingData.shippingData.shippingOption},
                 payment: {
                     gateway:'stripe',
                     stripe:{
