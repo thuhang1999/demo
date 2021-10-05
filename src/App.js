@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { commerce } from "./lib/commerce";
 import { Products, Navbar, Cart, Checkout } from "./components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import axios from "axios";
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -10,9 +11,15 @@ const App = () => {
   const [errorMesage, setErrorMessage] = useState("");
 
   const fetchProducts = async () => {
-    const { data } = await commerce.products.list();
+    // const { data } = await commerce.products.list();
+    axios.get('/api/get_products').then(res=>{
+      let data = res.data?.data;
+      if(data){
+        setProducts(data);
+      }
+    })
     // console.log("checkMe --> data", data);
-    setProducts(data);
+    // setProducts(data);
   };
   const fetchCart = async () => {
     setCart(await commerce.cart.retrieve());

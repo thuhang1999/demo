@@ -14,25 +14,24 @@ import useStyles from "./styles";
 const Product = ({ product, onAddToCart }) => {
   const classes = useStyles();
   console.log(product);
-  // return <div>test</div>
   return (
     <Card className={classes.root}>
       <CardMedia
         className={classes.media}
-        image={product.media.source}
-        title={product.name}
+        image={product.hinh_anh}
+        title={product.ten_hang}
       />
       <CardContent>
         <div className={classes.cardContent}>
           <Typography variant="hS" gutterBottom>
-            {product.name}
+            {product.ten_hang}
           </Typography>
           <Typography variant="hS">
-            {product.price.formatted_with_symbol}
+            {product.gia}
           </Typography>
         </div>
         <Typography
-          dangerouslySetInnerHTML={{ __html: product.desciption }}
+          dangerouslySetInnerHTML={{ __html: product.mo_ta }}
           variant="body2"
           color="textSecondary"
         />
@@ -40,7 +39,7 @@ const Product = ({ product, onAddToCart }) => {
       <CardActions disableSpacing className={classes.cardActions}>
         <IconButton
           aria-label="Add to Card"
-          onClick={() => onAddToCart(product.id, 1)}
+          onClick={() => onAddToCart(product.ma_hang, 1)}
         >
           <AddShoppingCart />
         </IconButton>
