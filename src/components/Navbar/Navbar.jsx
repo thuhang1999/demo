@@ -35,7 +35,10 @@ const Navbar = ({ totalItems }) => {
                 <div class="topnav">
                     <a class={location.search === "" ? "active" : ""} href="/">Trang chủ</a>
                     <a class={location.search === "?filter=nhan" ? "active" : ""} href="/home?filter=nhan">Nhẫn</a>
-                    <a class={location.search === "?filter=dayco" ? "active" : ""} href="/home?filter=dayco">Dây cổ</a>
+                    <a class={location.search === "?filter=dongho" ? "active" : ""} href="/home?filter=dongho">Đồng hồ</a>
+                    <a class={location.search === "?filter=vongtay" ? "active" : ""} href="/home?filter=vongtay">Vòng tay</a>
+                    <a class={location.search === "?filter=bongtai" ? "active" : ""} href="/home?filter=bongtai">Bông tai</a>
+                    <a class={location.search === "?filter=vongtay" ? "active" : ""} href="/home?filter=vongtay">Vòng tay</a>
                     <a class={location.search === "?filter=vongtay" ? "active" : ""} href="/home?filter=vongtay">Vòng tay</a>
                 </div>
             </AppBar>

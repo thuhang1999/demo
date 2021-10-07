@@ -18,11 +18,11 @@ app.use(expressFlash());
 
 
 const connection = mysql.createConnection({
-    host: "localhost",
-    port: 3306,
-    user: "root",
-    password: "",
-    database: "pnj_db",
+  host: "localhost",
+  port: 3306,
+  user: "root",
+  password: "",
+  database: "pnj_db",
 });
 connection.connect(function (err) {
   err ? console.log(err) : console.log("connection===", connection);
@@ -44,7 +44,10 @@ connection.on("connection", (stream) => {
 
 // products control
 app.get("/api/get_products", (req, res) => {
-  var sql = "SELECT * FROM `danh_muc_hang`";
+  let sql = "SELECT * FROM `danh_muc_hang`";
+  if (req.query.filter) {
+    sql = `SELECT * FROM danh_muc_hang WHERE ma_loai_hang = "${req.query.filter}";`
+  }
   connection.query(sql, function (err, results) {
     if (err) throw err;
     res.json({ data: results });
@@ -78,11 +81,11 @@ app.get("/api/order?a=b&c=d", (req, res) => {
 //sign up
 app.get("/api/user/sign_up", (req, res) => {
   let query = `INSERT INTO nguoi_dung(ten_user, ten_dang_nhap, mat_khau) VALUES ('KyunLegend','kyun','bootstraps3_v8');`;
-  connection.query(query, function (err, results){
-    if(err){
-      res.json({err_code: 400, err_msg: ""});
-    } 
-    res.json({"success": true});
+  connection.query(query, function (err, results) {
+    if (err) {
+      res.json({ err_code: 400, err_msg: "" });
+    }
+    res.json({ "success": true });
   })
 });
 
