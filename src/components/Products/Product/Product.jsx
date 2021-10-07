@@ -10,6 +10,7 @@ import {
 import { AddShoppingCart } from "@material-ui/icons";
 
 import useStyles from "./styles";
+import { formatNumber } from "../../../utils/Number";
 
 const Product = ({ product, onAddToCart }) => {
   const classes = useStyles();
@@ -26,10 +27,11 @@ const Product = ({ product, onAddToCart }) => {
           <Typography variant="hS" gutterBottom>
             {product.ten_hang}
           </Typography>
-          <Typography variant="hS">
-            {product.gia}
-          </Typography>
+
         </div>
+        <Typography variant="hS">
+          {formatNumber(product.gia)} đ
+        </Typography>
         <Typography
           dangerouslySetInnerHTML={{ __html: product.mo_ta }}
           variant="body2"

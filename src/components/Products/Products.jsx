@@ -8,22 +8,24 @@ import Product from "./Product/Product";
 
 // ];
 import useStyles from './styles';
+import { useLocation } from "react-router";
 
-const Products = ({products, onAddToCart}) => {
+const Products = ({ products, onAddToCart }) => {
     // console.log("products ==>", products);
+
     const classes = useStyles();
     return (
-    <main  className ={classes.content}>
-        <div className={classes.toolbar}/>
-        <Grid container justifyContent='center' spacing={4}>
-            {products.map((product) => (
-                <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
-                    <Product product={product} onAddToCart={onAddToCart} />
+        <main className={classes.content}>
+            <div className={classes.toolbar} />
+            <Grid container justifyContent='center' spacing={4}>
+                {products.map((product) => (
+                    <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
+                        <Product product={product} onAddToCart={onAddToCart} />
 
-                </Grid>
-            ))}
-        </Grid>
-    </main>
+                    </Grid>
+                ))}
+            </Grid>
+        </main>
     );
 }
 

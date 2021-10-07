@@ -30,7 +30,7 @@ export default class SignUp extends Component {
                         <br></br>
                         <button type="submit" className="btn btn-primary btn-block">Đăng ký</button>
                         <p className="forgot-password text-right">
-                            Đã có tài khoản ? <a href="#">Đăng nhập</a>
+                            Đã có tài khoản ? <a href="/login">Đăng nhập</a>
                         </p>
                     </form>
                 </div>

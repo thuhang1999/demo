@@ -11,11 +11,11 @@ const App = () => {
   const [order, setOrder] = useState({});
   const [errorMesage, setErrorMessage] = useState("");
 
-  const fetchProducts = async () => {
+  const fetchProducts = async (filter) => {
     // const { data } = await commerce.products.list();
-    axios.get('/api/get_products').then(res=>{
+    axios.get(`/api/get_products?filter=${filter}`).then(res => {
       let data = res.data?.data;
-      if(data){
+      if (data) {
         setProducts(data);
       }
     })
@@ -23,7 +23,7 @@ const App = () => {
     // setProducts(data);
   };
   const fetchCart = async () => {
-    setCart(await commerce.cart.retrieve());
+    // setCart(await commerce.cart.retrieve());
   };
 
   const handleAddToCart = async (productId, quantity) => {
@@ -63,10 +63,11 @@ const App = () => {
   };
 
   useEffect(() => {
-    fetchProducts();
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const params = Object.fromEntries(urlSearchParams.entries());
+    fetchProducts(params?.filter);
     fetchCart();
   }, []);
-  console.log(cart);
   // console.log("checkMe --> fetchProducts", products);
   return (
     <Router>
@@ -74,6 +75,9 @@ const App = () => {
         <Navbar totalItem={cart.total_items} />
         <Switch>
           <Route exact path="/">
+            <Products products={products} onAddToCart={handleAddToCart} />
+          </Route>
+          <Route exact path="/home">
             <Products products={products} onAddToCart={handleAddToCart} />
           </Route>
 
