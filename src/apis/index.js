@@ -19,6 +19,17 @@ class ApiC {
             }
         })
     }
+
+    signUp = async (username, password, email, name) => {
+        return axios.get('/api/user/sign_up', {
+            params: {
+                username,
+                password,
+                email,
+                name
+            }
+        })
+    }
 }
 
 const Api = new ApiC();

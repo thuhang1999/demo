@@ -80,12 +80,12 @@ app.get("/api/order?a=b&c=d", (req, res) => {
 // user control
 //sign up
 app.get("/api/user/sign_up", (req, res) => {
-  let query = `INSERT INTO nguoi_dung(ten_user, ten_dang_nhap, mat_khau) VALUES ('KyunLegend','kyun','bootstraps3_v8');`;
+  let query = `INSERT INTO nguoi_dung(ten_user, ten_dang_nhap, mat_khau, email) VALUES ("${req.query?.name}","${req.query?.username}","${req.query?.password}","${req.query?.email}");`;
   connection.query(query, function (err, results) {
     if (err) {
       res.json({ err_code: 400, err_msg: "" });
     }
-    res.json({ "success": true });
+    res.json({ "result": true });
   })
 });
 
