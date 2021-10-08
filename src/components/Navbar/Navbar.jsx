@@ -23,7 +23,7 @@ const Navbar = ({ totalItems }) => {
                     {(location.pathname === '/' || location.pathname === '/home') && (
                         <div className={classes.button}>
                             <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
-                                <Badge badgeConten={totalItems} color="secondary">
+                                <Badge badgeContent={totalItems} color="secondary">
                                     <ShoppingCart />
                                 </Badge>
                             </IconButton>
@@ -35,11 +35,14 @@ const Navbar = ({ totalItems }) => {
                 <div class="topnav">
                     <a class={location.search === "" ? "active" : ""} href="/">Trang chủ</a>
                     <a class={location.search === "?filter=nhan" ? "active" : ""} href="/home?filter=nhan">Nhẫn</a>
-                    <a class={location.search === "?filter=dongho" ? "active" : ""} href="/home?filter=dongho">Đồng hồ</a>
                     <a class={location.search === "?filter=vongtay" ? "active" : ""} href="/home?filter=vongtay">Vòng tay</a>
                     <a class={location.search === "?filter=bongtai" ? "active" : ""} href="/home?filter=bongtai">Bông tai</a>
-                    <a class={location.search === "?filter=vongtay" ? "active" : ""} href="/home?filter=vongtay">Vòng tay</a>
-                    <a class={location.search === "?filter=vongtay" ? "active" : ""} href="/home?filter=vongtay">Vòng tay</a>
+                    <a class={location.search === "?filter=lac" ? "active" : ""} href="/home?filter=lac">Lắc</a>
+                    <a class={location.search === "?filter=matdaychuy" ? "active" : ""} href="/home?filter=matdaychuy">Mặt dây chuyền</a>
+                    <a class={location.search === "?filter=dayco" ? "active" : ""} href="/home?filter=dayco">Dây cổ</a>
+                    <a class={location.search === "?filter=trangsucth" ? "active" : ""} href="/home?filter=trangsucth">Trang sức theo bộ</a>
+                    <a class={location.search === "?filter=dongho" ? "active" : ""} href="/home?filter=dongho">Đồng hồ</a>
+
                 </div>
             </AppBar>
         </>

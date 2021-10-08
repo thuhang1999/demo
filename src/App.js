@@ -7,7 +7,7 @@ import axios from "axios";
 
 const App = () => {
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState({});
+  const [cart, setCart] = useState([]);
   const [order, setOrder] = useState({});
   const [errorMesage, setErrorMessage] = useState("");
 
@@ -26,27 +26,43 @@ const App = () => {
     // setCart(await commerce.cart.retrieve());
   };
 
-  const handleAddToCart = async (productId, quantity) => {
-    const { cart } = await commerce.cart.add(productId, quantity);
+  const handleAddToCart = async (product, quantity) => {
+    console.log('add product', product);
+    let index = cart.findIndex(e => e.id === product.ma_hang);
+    if (index === -1) {
+      // new product
+      cart.push({
+        id: product.ma_hang,
+        product,
+        quantity
+      });
+    } else {
+      // cart[index] = {
+
+      // };
+    }
     setCart(cart);
+    // cart.findIndex(e => e.mahang = )
+    // const { cart } = await commerce.cart.add(productId, quantity);
+    // setCart(cart);
   };
 
   const hanleUpdateCartQty = async (lineItemId, quantity) => {
-    const { cart } = await commerce.cart.update(lineItemId, { quantity });
-    setCart(cart);
+    // const { cart } = await commerce.cart.update(lineItemId, { quantity });
+    // setCart(cart);
   };
   const hanleRemoveFromCart = async (productId) => {
-    const { cart } = await commerce.cart.remove(productId);
-    setCart(cart);
+    // const { cart } = await commerce.cart.remove(productId);
+    // setCart(cart);
   };
   const hanleEmptyCart = async () => {
-    const { cart } = await commerce.cart.empty();
-    setCart(cart);
+    // const { cart } = await commerce.cart.empty();
+    // setCart(cart);
   };
 
   const refresCart = async () => {
-    const newCart = await commerce.cart.refresh();
-    setCart(newCart);
+    // const newCart = await commerce.cart.refresh();
+    // setCart(newCart);
   };
 
   const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {

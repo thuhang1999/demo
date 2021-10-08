@@ -8,6 +8,7 @@ import {
   CardMedia,
 } from "@material-ui/core";
 import useStyles from "./styles";
+import { formatNumber } from "../../../utils/Number";
 
 const CartItem = ({ item, onUpdateCartQty, onRemoveFromCart }) => {
   console.log("{checkMe} TCL --> item:", item);
@@ -15,14 +16,14 @@ const CartItem = ({ item, onUpdateCartQty, onRemoveFromCart }) => {
   return (
     <Card>
       <CardMedia
-        image={item.media.source}
-        alt={item.name}
+        image={item.product.hinh_anh}
+        alt={item.product.ten_hang}
         className={classes.media}
       />
       <CardContent className={classes.cartContent}>
-        <Typography variant="h4">{item.name}</Typography>
+        <Typography variant="h4">{item.product.ten_hang}</Typography>
         <Typography variant="h5">
-          {item.line_total.formatted_with_symbol}
+          {formatNumber(item.product.gia)}
         </Typography>
       </CardContent>
       <CardActions className={classes.cartAction}>
@@ -34,7 +35,7 @@ const CartItem = ({ item, onUpdateCartQty, onRemoveFromCart }) => {
           >
             -
           </Button>
-          <Typography>{item.quanity}</Typography>
+          <Typography>{item.quantity}</Typography>
           <Button
             type="button"
             size="small"
@@ -49,7 +50,7 @@ const CartItem = ({ item, onUpdateCartQty, onRemoveFromCart }) => {
           color="secondary"
           onClick={() => onRemoveFromCart(item.id)}
         >
-          Remove
+          Xoá
         </Button>
       </CardActions>
     </Card>

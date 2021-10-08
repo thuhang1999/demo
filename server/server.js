@@ -45,7 +45,7 @@ connection.on("connection", (stream) => {
 // products control
 app.get("/api/get_products", (req, res) => {
   let sql = "SELECT * FROM `danh_muc_hang`";
-  if (req.query.filter) {
+  if (req.query.filter && req.query.filter !== "undefined") {
     sql = `SELECT * FROM danh_muc_hang WHERE ma_loai_hang = "${req.query.filter}";`
   }
   connection.query(sql, function (err, results) {
