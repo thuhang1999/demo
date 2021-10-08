@@ -1,15 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { AppBar, Toolbar, IconButton, Badge, MenuItem, Menu, Typography, ButtonGroup } from "@material-ui/core";
-import { Person, ShoppingCart } from "@material-ui/icons";
+import { DockOutlined, Launch, Person, ShoppingCart } from "@material-ui/icons";
 import { Link, useLocation } from 'react-router-dom';
 import "./styles.css"
 import logo from '../../assets/commerce.png';
 import useStyles from './styles';
+import UserStore from "../../stores/UserStore";
+import { withRouter } from 'react-router-dom';
 
-const Navbar = ({ totalItems }) => {
+const Navbar = withRouter(({ totalItems, history }) => {
+    const [count, setCount] = useState(0);
     const classes = useStyles();
     const location = useLocation();
     console.log('location -->', location)
+
+    const onClickAccount = (evt) => {
+        evt.preventDefault();
+        if (UserStore.userInfo) {
+            // do nothing
+        } else {
+            history.push("/login");
+        }
+    }
+
+    const signOut = (evt) => {
+        evt.preventDefault();
+        UserStore.setUser(null);
+        setCount(count + 1);
+    }
+
     return (
         <>
             <AppBar position="fixed" className={classes.appBar} color="inherit">
@@ -20,16 +39,22 @@ const Navbar = ({ totalItems }) => {
 
                     </Typography>
                     <div className={classes.grow} />
+                    <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
+                        <Badge badgeContent={totalItems} color="secondary">
+                            <ShoppingCart />
+                        </Badge>
+                    </IconButton>
                     {(location.pathname === '/' || location.pathname === '/home') && (
-                        <div className={classes.button}>
-                            <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
-                                <Badge badgeContent={totalItems} color="secondary">
-                                    <ShoppingCart />
-                                </Badge>
-                            </IconButton>
-                            <IconButton component={Link} to="/sign-up" aria-label="Show cart items" color="inherit">
+                        <div className={"row"}>
+
+                            {!!UserStore.userInfo && <div>Xin chào, {UserStore.userInfo?.ten_user}
+                                <IconButton component={Link} onClick={signOut} aria-label="Show cart items" color="inherit">
+                                    <Launch />
+                                </IconButton>
+                            </div>}
+                            {!UserStore.userInfo && <IconButton component={Link} onClick={onClickAccount} aria-label="Show cart items" color="inherit">
                                 <Person />
-                            </IconButton>
+                            </IconButton>}
                         </div>)}
                 </Toolbar>
                 <div class="topnav">
@@ -48,7 +73,7 @@ const Navbar = ({ totalItems }) => {
         </>
     )
 
-}
+})
 
 export default Navbar;
 

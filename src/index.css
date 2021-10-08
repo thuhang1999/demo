@@ -58,7 +58,10 @@ body, html, .App, #root, .auth-wrapper {
 .custom-control-label {
   font-weight: 400;
 }
-
+.error-text {
+  color: red;
+  font-size: 11px;
+}
 .forgot-password,
 .forgot-password a {
   text-align: right;

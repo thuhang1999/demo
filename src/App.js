@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { commerce } from "./lib/commerce";
 import { Products, Navbar, Cart, Checkout } from "./components";
 import { Login, SignUp } from './components/Auth'
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, } from "react-router-dom";
 import axios from "axios";
 
 const App = () => {
